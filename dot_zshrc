@@ -4,6 +4,7 @@ export CLICOLOR=1
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
+export FZF_TMUX=1
 export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 
 bindkey -e
@@ -16,6 +17,8 @@ compinit
 
 PROMPT='%F{117}%n@%m %~%f
 %F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
+
+eval "$(zoxide init zsh)"
 
 eval "$(sheldon source)"
 
