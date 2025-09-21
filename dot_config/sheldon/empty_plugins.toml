@@ -1,0 +1,20 @@
+shell = "zsh"
+
+[plugins]
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.zsh-abbr]
+github = "olets/zsh-abbr"
+
+[plugins.docker-completions]
+github = "docker/cli"
+dir = "contrib/completion/zsh"
+

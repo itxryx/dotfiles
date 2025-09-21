@@ -1,0 +1,54 @@
+version = "0.8.5"
+home = "/Users/itxryx"
+config_dir = "/Users/itxryx/.config/sheldon"
+data_dir = "/Users/itxryx/.local/share/sheldon"
+config_file = "/Users/itxryx/.config/sheldon/plugins.toml"
+
+[[plugins]]
+name = "zsh-autosuggestions"
+source_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-autosuggestions"
+files = ["/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"]
+apply = ["source"]
+
+[plugins.hooks]
+
+[[plugins]]
+name = "zsh-completions"
+source_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-completions"
+files = ["/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-completions/zsh-completions.plugin.zsh"]
+apply = ["source"]
+
+[plugins.hooks]
+
+[[plugins]]
+name = "zsh-syntax-highlighting"
+source_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-syntax-highlighting"
+files = ["/Users/itxryx/.local/share/sheldon/repos/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"]
+apply = ["source"]
+
+[plugins.hooks]
+
+[[plugins]]
+name = "zsh-abbr"
+source_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/olets/zsh-abbr"
+files = ["/Users/itxryx/.local/share/sheldon/repos/github.com/olets/zsh-abbr/zsh-abbr.plugin.zsh"]
+apply = ["source"]
+
+[plugins.hooks]
+
+[[plugins]]
+name = "docker-completions"
+source_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/docker/cli"
+plugin_dir = "/Users/itxryx/.local/share/sheldon/repos/github.com/docker/cli/contrib/completion/zsh"
+files = []
+apply = ["source"]
+
+[plugins.hooks]
+
+[templates]
+PATH = 'export PATH="{{ dir }}:$PATH"'
+path = 'path=( "{{ dir }}" $path )'
+fpath = 'fpath=( "{{ dir }}" $fpath )'
+source = """
+{{ hooks?.pre | nl }}{% for file in files %}source "{{ file }}"
+{% endfor %}{{ hooks?.post | nl }}"""

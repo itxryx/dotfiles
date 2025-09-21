@@ -1,0 +1,44 @@
+export LANG=ja_JP.UTF-8
+export EDITOR=vim
+export CLICOLOR=1
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+
+bindkey -e
+
+autoload -Uz colors
+colors
+
+autoload -Uz compinit
+compinit
+
+PROMPT='%F{117}%n@%m %~%f
+%F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
+
+eval "$(sheldon source)"
+
+setopt auto_cd
+setopt auto_list
+setopt auto_menu
+setopt hist_reduce_blanks
+setopt hist_ignore_all_dups
+setopt share_history
+setopt inc_append_history
+setopt mark_dirs
+setopt no_beep
+setopt print_eight_bit
+
+# zsh-abbr
+abbr -S g='git' &> /dev/null
+abbr -S t='tig' &> /dev/null
+abbr -S cpwd='pwd | pbcopy' &> /dev/null
+abbr -S els='eza' &> /dev/null
+abbr -S la='eza -a' &> /dev/null
+abbr -S ll='eza -l' &> /dev/null
+abbr -S lla='eza -la' &> /dev/null
+abbr -S bcat='bat' &> /dev/null
+abbr -S dk='docker' &> /dev/null
+abbr -S dkc='docker compose' &> /dev/null
+
