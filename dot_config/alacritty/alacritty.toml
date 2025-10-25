@@ -1,0 +1,56 @@
+[cursor]
+blink_interval = 250
+blink_timeout = 0
+
+[cursor.style]
+blinking = "Always"
+shape = "Beam"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "HackGen"
+style = "Bold"
+
+[font.bold_italic]
+family = "HackGen"
+style = "Bold Italic"
+
+[font.italic]
+family = "HackGen"
+style = "Italic"
+
+[font.normal]
+family = "HackGen"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window]
+opacity = 1
+
+[window.dimensions]
+columns = 200
+lines = 60
+
+[window.padding]
+x = 8
+y = 8
+
+[window.position]
+x = 0
+y = 0
+
+[general]
+live_config_reload = true
+import = ["/Users/itxryx/.config/alacritty/dracula.toml"]
+
+[env]
+TERM = "alacritty"
+

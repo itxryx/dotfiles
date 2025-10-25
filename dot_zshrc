@@ -1,0 +1,95 @@
+export LANG=ja_JP.UTF-8
+export EDITOR=vim
+export CLICOLOR=1
+export HISTFILE=~/.zsh_history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+export FZF_TMUX=1
+export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+
+bindkey -e
+
+autoload -Uz colors
+colors
+
+autoload -Uz compinit
+compinit
+
+PROMPT='%F{117}%n@%m %~%f
+%F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
+
+eval "$(zoxide init zsh)"
+
+eval "$(sheldon source)"
+
+setopt auto_cd
+setopt auto_list
+setopt auto_menu
+setopt hist_reduce_blanks
+setopt hist_ignore_all_dups
+setopt share_history
+setopt inc_append_history
+setopt mark_dirs
+setopt no_beep
+setopt print_eight_bit
+
+# zsh-abbr
+abbr -S g='git' &> /dev/null
+abbr -S t='tig' &> /dev/null
+abbr -S cpwd='pwd | pbcopy' &> /dev/null
+abbr -S els='eza' &> /dev/null
+abbr -S la='eza -a' &> /dev/null
+abbr -S ll='eza -l' &> /dev/null
+abbr -S lla='eza -la' &> /dev/null
+abbr -S bcat='bat' &> /dev/null
+abbr -S dk='docker' &> /dev/null
+abbr -S dkc='docker compose' &> /dev/null
+
+# Change directory
+fz-changedir() {
+  local dir
+  dir=$(fd --type d --hidden --follow --exclude .git 2> /dev/null | fzf +m --preview 'eza -al --color=always {}') &&
+  cd "$dir"
+}
+
+# Select file
+fz-file() {
+  local file
+  file=$(fd --type f --hidden --follow --exclude .git | fzf --preview 'bat --style=numbers --color=always {}') &&
+  echo "$file"
+}
+
+# Show file with bat
+fz-show() {
+  local file
+  file=$(fd --type f --hidden --follow --exclude .git | fzf --preview 'bat --style=numbers --color=always {}') &&
+  bat "$file"
+}
+
+# Kill process
+fz-kill() {
+  local pid
+  pid=$(procs | sed 1d | fzf -m --preview-window=hidden | awk '{print $1}')
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -''${1:-9}
+  fi
+}
+
+# Command history
+fz-history() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
+
+# Environment variables
+fz-env() {
+  printenv | fzf --preview 'echo {}' --preview-window=down:3:wrap
+}
+
+# SSH host selector
+fz-ssh() {
+  local host
+  host=$(grep "^Host " ~/.ssh/config 2>/dev/null | grep -v "[*?]" | cut -d " " -f 2- | fzf) &&
+  ssh "$host"
+}
+

@@ -1,0 +1,74 @@
+brew "mas"
+
+brew "bat"
+brew "eza"
+brew "fastfetch"
+brew "fd"
+brew "fzf"
+brew "procs"
+brew "ripgrep"
+brew "tmux"
+brew "tree"
+brew "zoxide"
+
+brew "git"
+brew "git-delta"
+brew "tig"
+brew "vim"
+
+brew "curl"
+brew "nmap"
+brew "tcpdump"
+brew "wget"
+
+brew "docker"
+
+brew "ffmpeg"
+brew "imagemagick"
+brew "jq"
+brew "nkf"
+brew "unzip"
+brew "zip"
+
+brew "chezmoi"
+brew "mise"
+brew "sheldon"
+
+brew "codex"
+brew "gemini-cli"
+
+cask "alacritty"
+cask "datagrip"
+cask "docker-desktop"
+cask "karabiner-elements"
+cask "phpstorm"
+cask "visual-studio-code"
+
+cask "google-chrome"
+
+cask "wireshark-app"
+
+cask "antinote"
+cask "craft"
+cask "notion"
+cask "obsidian"
+
+cask "figma"
+cask "vlc"
+
+cask "font-hackgen"
+cask "font-hackgen-nerd"
+
+cask "slack"
+
+cask "chatgpt"
+cask "claude"
+cask "claude-code"
+
+mas "RunCat",        id: 1429033973
+mas "Toggl Track",   id: 1291898086
+mas "Compressor",    id: 424390742
+mas "Final Cut Pro", id: 424389933
+mas "Logic Pro",     id: 634148309
+mas "Xcode",         id: 497799835
+

@@ -1,0 +1,59 @@
+set fenc=utf-8
+set encoding=utf-8
+
+set nobackup
+
+set noswapfile
+
+set autoread
+
+set hidden
+
+set showcmd
+
+set number
+
+set listchars=tab:»-,trail:-,eol:↲,nbsp:%
+set list
+highlight NonText ctermbg=NONE ctermfg=Gray
+highlight SpecialKey ctermbg=NONE ctermfg=Gray
+
+set cursorline
+highlight CursorLine ctermbg=Black
+highlight CursorLine ctermfg=Blue
+
+" set cursorcolumn
+" highlight CursorColumn ctermbg=Black
+" highlight CursorColumn ctermfg=Yellow
+
+set virtualedit=onemore
+
+set smartindent
+
+set visualbell
+
+set showmatch
+
+set laststatus=2
+
+nnoremap j gj
+nnoremap k gk
+
+set expandtab
+
+set shiftwidth=2
+
+set tabstop=2
+
+set ignorecase
+
+set smartcase
+
+set wrapscan
+
+set hlsearch
+
+set backspace=2
+
+syntax enable
+

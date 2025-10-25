@@ -1,0 +1,57 @@
+[user]
+  name = ito ryo
+  email = electrooculogram@gmail.com
+
+[includeIf "gitdir:~/Works/"]
+  path = ~/.gitconfig_work
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[init]
+  defaultBranch = main
+
+[color]
+  ui = auto
+
+[merge]
+  ff = false
+  conflictstyle = diff3
+
+[fetch]
+  prune = true
+
+[pull]
+  ff = only
+  rebase = true
+
+[rebase]
+  autostash = true
+  autosquash = true
+
+[push]
+  default = current
+
+[status]
+  showUntrackedFiles = all
+
+[diff]
+  colorMoved = default
+
+[color]
+  ui = auto
+
+[alias]
+  glog = log --graph --stat --oneline --all --branches --tags --remotes --pretty=fuller --decorate=auto
+
+[delta]
+  side-by-side = true
+  line-numbers = true
+  navigate = true
+  light = false
+
