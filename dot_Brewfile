@@ -34,9 +34,6 @@ brew "chezmoi"
 brew "mise"
 brew "sheldon"
 
-brew "codex"
-brew "gemini-cli"
-
 cask "alacritty"
 cask "datagrip"
 cask "docker-desktop"
@@ -51,7 +48,6 @@ cask "wireshark-app"
 cask "antinote"
 cask "craft"
 cask "notion"
-cask "obsidian"
 
 cask "figma"
 cask "vlc"
@@ -62,6 +58,7 @@ cask "font-hackgen-nerd"
 cask "slack"
 
 cask "chatgpt"
+cask "codex"
 cask "claude"
 cask "claude-code"
 
