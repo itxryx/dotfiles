@@ -42,6 +42,7 @@ cask "phpstorm"
 cask "visual-studio-code"
 
 cask "google-chrome"
+cask "chatgpt-atlas"
 
 cask "wireshark-app"
 
