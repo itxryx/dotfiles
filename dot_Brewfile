@@ -21,6 +21,8 @@ brew "nmap"
 brew "tcpdump"
 brew "wget"
 
+brew awscli
+
 brew "docker"
 
 brew "ffmpeg"
