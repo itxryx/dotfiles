@@ -21,7 +21,7 @@ brew "nmap"
 brew "tcpdump"
 brew "wget"
 
-brew awscli
+brew "awscli"
 
 brew "docker"
 
@@ -64,11 +64,4 @@ cask "chatgpt"
 cask "codex"
 cask "claude"
 cask "claude-code"
-
-mas "RunCat",        id: 1429033973
-mas "Toggl Track",   id: 1291898086
-mas "Compressor",    id: 424390742
-mas "Final Cut Pro", id: 424389933
-mas "Logic Pro",     id: 634148309
-mas "Xcode",         id: 497799835
 
