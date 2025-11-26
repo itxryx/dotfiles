@@ -5,7 +5,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export SAVEHIST=1000000
 export FZF_TMUX=1
-export PATH="$HOME/bin:/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
 bindkey -e
 
