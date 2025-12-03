@@ -1,5 +1,5 @@
 [user]
-  name = ito ryo
+  name = komatsu ryo
   email = electrooculogram@gmail.com
 
 [includeIf "gitdir:~/Works/"]
