@@ -24,6 +24,7 @@ brew "wget"
 brew "awscli"
 
 brew "docker"
+brew "terraform"
 
 brew "ffmpeg"
 brew "imagemagick"
