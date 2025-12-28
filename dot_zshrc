@@ -18,6 +18,8 @@ compinit
 PROMPT='%F{117}%n@%m %~%f
 %F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
 
+eval "$(mise activate zsh)"
+
 eval "$(zoxide init zsh)"
 
 eval "$(sheldon source)"
