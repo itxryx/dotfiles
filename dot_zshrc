@@ -18,6 +18,8 @@ compinit
 PROMPT='%F{117}%n@%m %~%f
 %F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
 
+RPROMPT='%F{109}${GIT_BRANCH_NAME}%f'
+
 eval "$(mise activate zsh)"
 
 eval "$(zoxide init zsh)"
@@ -34,6 +36,7 @@ setopt inc_append_history
 setopt mark_dirs
 setopt no_beep
 setopt print_eight_bit
+setopt prompt_subst
 
 # zsh-abbr
 abbr -S g='git' &> /dev/null
@@ -46,6 +49,29 @@ abbr -S lla='eza -la' &> /dev/null
 abbr -S bcat='bat' &> /dev/null
 abbr -S dk='docker' &> /dev/null
 abbr -S dkc='docker compose' &> /dev/null
+
+# run git for prompt
+precmd () {
+  BRANCH=$(git branch --show-current 2>/dev/null)
+  if [ -n "$BRANCH" ]; then
+    STATUS=$(git status --porcelain 2>/dev/null)
+    ICON_BRANCH=''
+    ICON_MOD='*'
+    ICON_UNT='?'
+    if [ -n "$STATUS" ]; then
+      UNTRACKED_COUNT=$(printf '%s\n' "$STATUS" | grep -c '^??')
+      MODIFIED_COUNT=$(printf '%s\n' "$STATUS" | grep -vc '^??')
+      PARTS=""
+      [ "$MODIFIED_COUNT" -gt 0 ] && PARTS="${PARTS}${ICON_MOD}${MODIFIED_COUNT} "
+      [ "$UNTRACKED_COUNT" -gt 0 ] && PARTS="${PARTS}${ICON_UNT}${UNTRACKED_COUNT} "
+      export GIT_BRANCH_NAME="${ICON_BRANCH} ${BRANCH} ${PARTS}"
+    else
+      export GIT_BRANCH_NAME="${ICON_BRANCH} ${BRANCH}"
+    fi
+  else
+    export GIT_BRANCH_NAME=""
+  fi
+}
 
 # change directory
 fzcd() {
