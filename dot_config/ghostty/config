@@ -28,11 +28,13 @@ window-padding-balance = true
 window-theme = ghostty
 maximize = true
 macos-titlebar-style = transparent
-title = " "
+title = ""
 
 # --- Startup command ---
 command = /bin/zsh -l -c "tmux a -t 0 || tmux"
 
 wait-after-command = true
 copy-on-select = clipboard
+
+keybind = shift+enter=text:\n
 
