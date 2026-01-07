@@ -1,0 +1,38 @@
+theme = Dracula
+
+# --- Cursor ---
+cursor-style = bar
+cursor-style-blink = true
+mouse-hide-while-typing
+
+# --- Font ---
+font-family = "HackGen Console NF"
+font-style = "Regular"
+font-style-bold = "Bold"
+font-style-italic = "Italic"
+font-style-bold-italic = "Bold Italic"
+font-size = 14
+font-thicken
+
+# --- Scrolling ---
+mouse-scroll-multiplier = 3
+# 500MB
+scrollback-limit = 524288000
+
+# --- Window appearance ---
+background-opacity = 0.89
+background-blur = true
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-theme = ghostty
+maximize = true
+macos-titlebar-style = transparent
+title = " "
+
+# --- Startup command ---
+command = /bin/zsh -l -c "tmux a -t 0 || tmux"
+
+wait-after-command = true
+copy-on-select = clipboard
+
