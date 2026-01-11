@@ -50,8 +50,8 @@ cask "chatgpt-atlas"
 cask "wireshark-app"
 
 cask "antinote"
-cask "craft"
 cask "notion"
+cask "ticktick"
 
 cask "figma"
 cask "vlc"
