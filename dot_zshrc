@@ -73,6 +73,13 @@ precmd () {
   fi
 }
 
+# git delete merged local branch
+git-delete-merged-branch() {
+  git branch --merged \
+    | sed 's/^[* ]*//' \
+    | grep -vE '^(main|master|develop|staging|production|stg|prod)$' \
+    | xargs -r git branch -d
+}
 # change directory
 fzcd() {
   local dir
