@@ -41,7 +41,6 @@ cask "datagrip"
 cask "docker-desktop"
 cask "ghostty"
 cask "karabiner-elements"
-cask "phpstorm"
 cask "visual-studio-code"
 
 cask "google-chrome"
