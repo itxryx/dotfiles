@@ -1,4 +1,4 @@
-rew "mas"
+brew "mas"
 
 brew "bat"
 brew "eza"
