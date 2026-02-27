@@ -37,6 +37,8 @@ brew "chezmoi"
 brew "mise"
 brew "sheldon"
 
+brew "gemini-cli"
+
 cask "datagrip"
 cask "docker-desktop"
 cask "ghostty"
