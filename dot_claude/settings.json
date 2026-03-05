@@ -36,5 +36,19 @@
     "command": "node ~/.claude/scripts/statusline/index.js",
     "padding": 0
   },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ~/.claude/scripts/statusline/clear-cache.js",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  },
   "spinnerTipsEnabled": false
 }
