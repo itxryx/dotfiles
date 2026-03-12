@@ -26,7 +26,10 @@ function readCache() {
         if (cacheAge > RATE_LIMIT.CACHE_TTL_SECONDS) return null;
 
         return cache;
-    } catch {
+    } catch (error) {
+        if (process.env.DEBUG) {
+            process.stderr.write(`Cache read error: ${error.message}\n`);
+        }
         return null;
     }
 }
@@ -35,8 +38,15 @@ function writeCache(data) {
     try {
         const cachePath = getCachePath();
         ensureCacheDir(cachePath);
-        fs.writeFileSync(cachePath, JSON.stringify({ timestamp: Date.now(), data }, null, 2), 'utf8');
-    } catch {
+
+        // Atomic write: 一時ファイルに書き込み後にrenameで競合を防ぐ
+        const tmpPath = cachePath + '.tmp.' + process.pid;
+        fs.writeFileSync(tmpPath, JSON.stringify({ timestamp: Date.now(), data }, null, 2), 'utf8');
+        fs.renameSync(tmpPath, cachePath);
+    } catch (error) {
+        if (process.env.DEBUG) {
+            process.stderr.write(`Cache write error: ${error.message}\n`);
+        }
     }
 }
 
@@ -46,7 +56,10 @@ function clearCache() {
         if (fs.existsSync(cachePath)) {
             fs.unlinkSync(cachePath);
         }
-    } catch {
+    } catch (error) {
+        if (process.env.DEBUG) {
+            process.stderr.write(`Cache clear error: ${error.message}\n`);
+        }
     }
 }
 

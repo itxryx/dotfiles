@@ -13,6 +13,7 @@ const COLORS = {
 const RATE_LIMIT = {
     CACHE_TTL_SECONDS: 300,
     API_TIMEOUT_MS: 5000,
+    API_MAX_RESPONSE_SIZE: 1024 * 1024, // 1MB
     API_URL: 'https://api.anthropic.com/api/oauth/usage',
     API_BETA_HEADER: 'oauth-2025-04-20',
     KEYCHAIN_SERVICE: 'Claude Code-credentials',
@@ -25,8 +26,15 @@ const PROGRESS_BAR = {
     EMPTY: '○'
 };
 
+function getUsageColor(percentage) {
+    if (percentage < 50) return COLORS.green;
+    if (percentage < 80) return COLORS.yellow;
+    return COLORS.red;
+}
+
 module.exports = {
     COLORS,
     RATE_LIMIT,
-    PROGRESS_BAR
+    PROGRESS_BAR,
+    getUsageColor
 };

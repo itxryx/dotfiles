@@ -4,7 +4,9 @@ const { RATE_LIMIT } = require('./config');
 function getOAuthToken() {
     return new Promise((resolve) => {
         try {
-            const command = `security find-generic-password -a "$USER" -w -s "${RATE_LIMIT.KEYCHAIN_SERVICE}"`;
+            // 環境変数USERのフォールバック
+            const username = process.env.USER || process.env.USERNAME || 'unknown';
+            const command = `security find-generic-password -a "${username}" -w -s "${RATE_LIMIT.KEYCHAIN_SERVICE}"`;
             const result = execSync(command, {
                 encoding: 'utf8',
                 timeout: 3000,
@@ -24,12 +26,18 @@ function getOAuthToken() {
                     resolve(parsed.claudeAiOauth.accessToken);
                     return;
                 }
-            } catch {
+            } catch (error) {
                 // JSONでない場合はそのまま使用
+                if (process.env.DEBUG) {
+                    process.stderr.write(`Token JSON parse: not JSON (${error.message})\n`);
+                }
             }
 
             resolve(token);
-        } catch {
+        } catch (error) {
+            if (process.env.DEBUG) {
+                process.stderr.write(`Keychain access error: ${error.message}\n`);
+            }
             resolve(null);
         }
     });

@@ -1,10 +1,12 @@
-const { COLORS, PROGRESS_BAR, RATE_LIMIT } = require('./config');
+const { COLORS, PROGRESS_BAR, RATE_LIMIT, getUsageColor } = require('./config');
 const { getOAuthToken } = require('./keychain');
 const { readCache, writeCache } = require('./cache');
 const { fetchUsage } = require('./api');
 
 function buildProgressBar(percentage) {
-    const filledCount = Math.round((percentage / 100) * PROGRESS_BAR.SEGMENTS);
+    const rawCount = Math.round((percentage / 100) * PROGRESS_BAR.SEGMENTS);
+    // 1%以上の場合は最低1個の●を表示
+    const filledCount = percentage > 0 ? Math.max(1, rawCount) : 0;
     const emptyCount = PROGRESS_BAR.SEGMENTS - filledCount;
     const dots = Array(PROGRESS_BAR.SEGMENTS).fill(PROGRESS_BAR.EMPTY);
     for (let i = 0; i < filledCount; i++) {
@@ -13,17 +15,23 @@ function buildProgressBar(percentage) {
     return dots.join(' ');
 }
 
-function getUsageColor(percentage) {
-    if (percentage < 50) return COLORS.green;
-    if (percentage < 80) return COLORS.yellow;
-    return COLORS.red;
-}
-
 function formatResetTime(isoString, type) {
+    // null/undefined/空文字列のチェック
+    if (!isoString) {
+        return 'Resets N/A';
+    }
+
     const date = new Date(isoString);
+
+    // 無効な日付のチェック
+    if (isNaN(date.getTime())) {
+        return 'Resets N/A';
+    }
+
     const options = { timeZone: RATE_LIMIT.TIMEZONE, hour: 'numeric', hour12: true };
 
-    if (type === '7d') {
+    // 5h以外はすべて月日付きフォーマット
+    if (type !== '5h') {
         options.month = 'short';
         options.day = 'numeric';
     }
@@ -44,7 +52,12 @@ function formatResetTime(isoString, type) {
 }
 
 function formatRateLimitLine(label, data) {
-    const percentage = Math.round(data.utilization);
+    // utilizationの厳密な数値化
+    const rawUtilization = data.utilization;
+    const numUtilization = typeof rawUtilization === 'number' ? rawUtilization : parseFloat(rawUtilization);
+    const safeUtilization = !isNaN(numUtilization) && isFinite(numUtilization) ? numUtilization : 0;
+    const percentage = Math.round(safeUtilization);
+
     const progressBar = buildProgressBar(percentage);
     const color = getUsageColor(percentage);
     const resetTime = formatResetTime(data.resets_at, label);
@@ -76,4 +89,4 @@ async function getRateLimitDisplay() {
     return formatRateLimitOutput(usage);
 }
 
-module.exports = { getRateLimitDisplay, buildProgressBar, formatResetTime, getUsageColor };
+module.exports = { getRateLimitDisplay, buildProgressBar, formatResetTime };

@@ -3,6 +3,14 @@ const { RATE_LIMIT } = require('./config');
 
 function fetchUsage(token) {
     return new Promise((resolve) => {
+        let resolved = false;
+        const safeResolve = (value) => {
+            if (!resolved) {
+                resolved = true;
+                resolve(value);
+            }
+        };
+
         const url = new URL(RATE_LIMIT.API_URL);
 
         const options = {
@@ -19,22 +27,51 @@ function fetchUsage(token) {
 
         const req = https.request(options, (res) => {
             let data = '';
-            res.on('data', (chunk) => { data += chunk; });
+            let dataSize = 0;
+
+            res.on('data', (chunk) => {
+                dataSize += chunk.length;
+                if (dataSize > RATE_LIMIT.API_MAX_RESPONSE_SIZE) {
+                    // サイズ制限超過: 接続を切断
+                    res.destroy();
+                    safeResolve(null);
+                    return;
+                }
+                data += chunk;
+            });
+
             res.on('end', () => {
                 if (res.statusCode !== 200) {
-                    resolve(null);
+                    if (process.env.DEBUG) {
+                        process.stderr.write(`API error: HTTP ${res.statusCode}\n`);
+                    }
+                    safeResolve(null);
                     return;
                 }
                 try {
-                    resolve(JSON.parse(data));
-                } catch {
-                    resolve(null);
+                    safeResolve(JSON.parse(data));
+                } catch (error) {
+                    if (process.env.DEBUG) {
+                        process.stderr.write(`API JSON parse error: ${error.message}\n`);
+                    }
+                    safeResolve(null);
                 }
             });
         });
 
-        req.on('error', () => resolve(null));
-        req.on('timeout', () => { req.destroy(); resolve(null); });
+        req.on('error', (error) => {
+            if (process.env.DEBUG) {
+                process.stderr.write(`API request error: ${error.message}\n`);
+            }
+            safeResolve(null);
+        });
+        req.on('timeout', () => {
+            if (process.env.DEBUG) {
+                process.stderr.write('API request timeout\n');
+            }
+            req.destroy();
+            safeResolve(null);
+        });
         req.end();
     });
 }
