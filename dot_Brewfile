@@ -61,6 +61,8 @@ cask "font-hackgen-nerd"
 
 cask "slack"
 
+cask "gcloud-cli"
+
 cask "claude"
 cask "claude-code"
 
