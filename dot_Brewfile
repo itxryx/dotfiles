@@ -46,6 +46,7 @@ cask "karabiner-elements"
 cask "visual-studio-code"
 
 cask "google-chrome"
+cask "google-japanese-ime"
 
 cask "wireshark-app"
 
