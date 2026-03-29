@@ -35,6 +35,9 @@ setopt no_beep
 setopt print_eight_bit
 setopt prompt_subst
 setopt extended_history
+setopt auto_remove_slash
+setopt always_last_prompt
+setopt auto_remove_slash
 
 # zsh-abbr
 abbr -S g='git' &> /dev/null
