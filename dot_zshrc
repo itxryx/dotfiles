@@ -37,6 +37,7 @@ setopt mark_dirs
 setopt no_beep
 setopt print_eight_bit
 setopt prompt_subst
+setopt extended_history
 
 # zsh-abbr
 abbr -S g='git' &> /dev/null
@@ -49,6 +50,7 @@ abbr -S lla='eza -la' &> /dev/null
 abbr -S bcat='bat' &> /dev/null
 abbr -S dk='docker' &> /dev/null
 abbr -S dkc='docker compose' &> /dev/null
+abbr -S history='history -i' &> /dev/null
 
 # run git for prompt
 precmd () {
@@ -80,6 +82,7 @@ git-delete-merged-branch() {
     | grep -vE '^(main|master|develop|staging|production|stg|prod)$' \
     | xargs -r git branch -d
 }
+
 # change directory
 fzcd() {
   local dir
