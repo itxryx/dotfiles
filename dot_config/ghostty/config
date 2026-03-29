@@ -6,7 +6,10 @@ cursor-style-blink = true
 mouse-hide-while-typing
 
 # --- Font ---
-font-family = "HackGen Console NF"
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-family = HackGen Console
+font-family = HackGen Console NF
+font-family = monospace
 font-style = "Regular"
 font-style-bold = "Bold"
 font-style-italic = "Italic"

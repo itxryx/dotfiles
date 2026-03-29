@@ -67,6 +67,6 @@ cask "ticktick"
 cask "vlc"
 
 # Cask - Font
-cask "font-hackgen"
 cask "font-hackgen-nerd"
+cask "font-jetbrains-mono-nerd-font"
 

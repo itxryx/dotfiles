@@ -1,3 +1,4 @@
+# --- Environment Variables ---
 export LANG=ja_JP.UTF-8
 export EDITOR=vim
 export CLICOLOR=1
@@ -7,22 +8,28 @@ export SAVEHIST=1000000
 export FZF_TMUX=1
 export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 
+# Vi key bindings
 bindkey -v
 
+# Enable color support and completion
 autoload -Uz colors
 colors
 
 autoload -Uz compinit
 compinit
 
+# --- Prompt ---
+# Left: user@host cwd, Right: git branch info (set by precmd)
 PROMPT='%F{117}%n@%m %~%f
 %F{109}%D{%H:%M:%S}%f %F{109}%B❯%b%f '
 RPROMPT='%F{109}${GIT_BRANCH_NAME}%f'
 
+# --- Tool Initialization ---
 eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 eval "$(sheldon source)"
 
+# --- Options ---
 setopt auto_cd
 setopt auto_list
 setopt auto_menu
@@ -39,7 +46,7 @@ setopt auto_remove_slash
 setopt always_last_prompt
 setopt auto_remove_slash
 
-# zsh-abbr
+# --- Abbreviations (zsh-abbr) ---
 abbr -S g='git' &> /dev/null
 abbr -S t='tig' &> /dev/null
 abbr -S cpwd='pwd | pbcopy' &> /dev/null
@@ -52,7 +59,8 @@ abbr -S dk='docker' &> /dev/null
 abbr -S dkc='docker compose' &> /dev/null
 abbr -S history='history -i' &> /dev/null
 
-# run git for prompt
+# --- Prompt Hook ---
+# Updates GIT_BRANCH_NAME with branch, modified count (*N), and untracked count (?N)
 precmd () {
   BRANCH=$(git branch --show-current 2>/dev/null)
   if [ -n "$BRANCH" ]; then
@@ -75,7 +83,9 @@ precmd () {
   fi
 }
 
-# git delete merged local branch
+# --- Functions ---
+
+# Delete all local branches already merged into the current branch
 git-delete-merged-branch() {
   git branch --merged \
     | sed 's/^[* ]*//' \
@@ -83,21 +93,21 @@ git-delete-merged-branch() {
     | xargs -r git branch -d
 }
 
-# change directory
+# Fuzzy directory jump (max depth 3, excludes .git)
 fzcd() {
   local dir
   dir=$(fd --type d --hidden --follow --exclude .git --max-depth 3 2> /dev/null | fzf +m --preview 'eza -al --color=always {}') &&
   cd "$dir"
 }
 
-# show file with bat
+# Fuzzy file preview and open with bat
 fzbat() {
   local file
   file=$(fd --type f --hidden --follow --exclude .git --max-depth 3 | fzf --preview 'bat --style=numbers --color=always {}') &&
   bat "$file"
 }
 
-# kill process
+# Fuzzy process killer (default signal: 9)
 fzkill() {
   local pid
   pid=$(procs | sed 1d | fzf -m --preview-window=hidden | awk '{print $1}')
@@ -107,17 +117,17 @@ fzkill() {
   fi
 }
 
-# command history
+# Fuzzy command history search (places selected command on the edit line)
 fzhistory() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
-# environment variables
+# Fuzzy environment variable browser
 fzenv() {
   printenv | fzf --preview 'echo {}' --preview-window=down:3:wrap
 }
 
-# SSH host selector
+# Fuzzy SSH host selector from ~/.ssh/config (excludes wildcard entries)
 fzssh() {
   local host
   host=$(grep "^Host " ~/.ssh/config 2>/dev/null | grep -v "[*?]" | cut -d " " -f 2- | fzf) &&
