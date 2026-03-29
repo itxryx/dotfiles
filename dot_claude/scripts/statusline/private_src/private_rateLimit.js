@@ -5,9 +5,10 @@ const { fetchUsage } = require('./api');
 
 function buildProgressBar(percentage) {
     const rawCount = Math.round((percentage / 100) * PROGRESS_BAR.SEGMENTS);
-    // 1%以上の場合は最低1個の●を表示
-    const filledCount = percentage > 0 ? Math.max(1, rawCount) : 0;
-    const emptyCount = PROGRESS_BAR.SEGMENTS - filledCount;
+    // 1%以上の場合は最低1個の●を表示。SEGMENTS数を超えないようクランプ
+    const filledCount = percentage > 0
+        ? Math.min(Math.max(1, rawCount), PROGRESS_BAR.SEGMENTS)
+        : 0;
     const dots = Array(PROGRESS_BAR.SEGMENTS).fill(PROGRESS_BAR.EMPTY);
     for (let i = 0; i < filledCount; i++) {
         dots[i] = PROGRESS_BAR.FILLED;
@@ -65,7 +66,11 @@ function formatRateLimitLine(label, data) {
     const paddedLabel = label.padEnd(3);
     const paddedPercentage = `${percentage}%`.padStart(4);
 
-    return `${COLORS.muted}${paddedLabel}${COLORS.reset} ${color}${progressBar}${COLORS.reset} ${color}${paddedPercentage}${COLORS.reset} ${COLORS.dim}${resetTime} (JST)${COLORS.reset}`;
+    const tzAbbr = new Intl.DateTimeFormat('en-US', { timeZone: RATE_LIMIT.TIMEZONE, timeZoneName: 'short' })
+        .formatToParts(new Date())
+        .find(p => p.type === 'timeZoneName')?.value ?? RATE_LIMIT.TIMEZONE;
+
+    return `${COLORS.muted}${paddedLabel}${COLORS.reset} ${color}${progressBar}${COLORS.reset} ${color}${paddedPercentage}${COLORS.reset} ${COLORS.dim}${resetTime} (${tzAbbr})${COLORS.reset}`;
 }
 
 function formatRateLimitOutput(usage) {
@@ -79,7 +84,7 @@ async function getRateLimitDisplay() {
     const cached = readCache();
     if (cached?.data) return formatRateLimitOutput(cached.data);
 
-    const token = await getOAuthToken();
+    const token = getOAuthToken();
     if (!token) return null;
 
     const usage = await fetchUsage(token);

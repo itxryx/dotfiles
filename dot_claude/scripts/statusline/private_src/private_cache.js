@@ -22,6 +22,7 @@ function readCache() {
         const content = fs.readFileSync(cachePath, 'utf8');
         const cache = JSON.parse(content);
 
+        if (typeof cache.timestamp !== 'number') return null;
         const cacheAge = (Date.now() - cache.timestamp) / 1000;
         if (cacheAge > RATE_LIMIT.CACHE_TTL_SECONDS) return null;
 
@@ -41,8 +42,12 @@ function writeCache(data) {
 
         // Atomic write: 一時ファイルに書き込み後にrenameで競合を防ぐ
         const tmpPath = cachePath + '.tmp.' + process.pid;
-        fs.writeFileSync(tmpPath, JSON.stringify({ timestamp: Date.now(), data }, null, 2), 'utf8');
-        fs.renameSync(tmpPath, cachePath);
+        try {
+            fs.writeFileSync(tmpPath, JSON.stringify({ timestamp: Date.now(), data }, null, 2), 'utf8');
+            fs.renameSync(tmpPath, cachePath);
+        } finally {
+            try { fs.unlinkSync(tmpPath); } catch (_) { /* rename済みなら無視 */ }
+        }
     } catch (error) {
         if (process.env.DEBUG) {
             process.stderr.write(`Cache write error: ${error.message}\n`);
@@ -53,10 +58,9 @@ function writeCache(data) {
 function clearCache() {
     try {
         const cachePath = getCachePath();
-        if (fs.existsSync(cachePath)) {
-            fs.unlinkSync(cachePath);
-        }
+        fs.unlinkSync(cachePath);
     } catch (error) {
+        if (error.code === 'ENOENT') return;
         if (process.env.DEBUG) {
             process.stderr.write(`Cache clear error: ${error.message}\n`);
         }

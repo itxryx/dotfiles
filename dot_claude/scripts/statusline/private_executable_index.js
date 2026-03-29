@@ -32,7 +32,9 @@ async function main() {
         // used_percentageの厳密な数値化
         const rawPercentage = inputData.context_window?.used_percentage;
         const numPercentage = typeof rawPercentage === 'number' ? rawPercentage : parseFloat(rawPercentage);
-        const usedPercentage = !isNaN(numPercentage) && isFinite(numPercentage) ? numPercentage : 0;
+        const usedPercentage = !isNaN(numPercentage) && isFinite(numPercentage)
+            ? Math.max(0, Math.min(100, numPercentage))
+            : 0;
 
         const claudeInfo = `${COLORS.primary}[v${version} + ${model}]${COLORS.reset}`;
         const locationInfo = `📁 ${COLORS.primary}${dirName}${COLORS.reset}`;
