@@ -43,9 +43,6 @@
 [diff]
   colorMoved = default
 
-[color]
-  ui = auto
-
 [alias]
   glog = log --graph --stat --oneline --all --branches --tags --remotes --pretty=fuller --decorate=auto
 

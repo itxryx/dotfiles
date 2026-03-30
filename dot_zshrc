@@ -44,7 +44,6 @@ setopt prompt_subst
 setopt extended_history
 setopt auto_remove_slash
 setopt always_last_prompt
-setopt auto_remove_slash
 
 # --- Abbreviations (zsh-abbr) ---
 abbr -S g='git' &> /dev/null
