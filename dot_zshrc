@@ -132,4 +132,3 @@ fzssh() {
   host=$(grep "^Host " ~/.ssh/config 2>/dev/null | grep -v "[*?]" | cut -d " " -f 2- | fzf) &&
   ssh "$host"
 }
-
