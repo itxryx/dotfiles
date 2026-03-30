@@ -15,16 +15,16 @@ brew "zoxide"         # cd alternative
 
 # Standard Utility
 brew "curl"
-brew "wget"
+brew "ffmpeg"
+brew "imagemagick"
+brew "jq"
+brew "nkf"
 brew "nmap"
 brew "tcpdump"
 brew "tree"
-brew "jq"
-brew "nkf"
 brew "unzip"
+brew "wget"
 brew "zip"
-brew "ffmpeg"
-brew "imagemagick"
 
 # Editor / Multiplexer
 brew "tmux"
@@ -36,17 +36,17 @@ brew "git-delta"
 brew "tig"
 
 # Cloud / Infrastructure
-# brew "awscli" install manually
 brew "terraform"
+# brew "awscli" install manually
 
 # Cask - Development
-cask "claude"
 cask "claude-code"
+cask "claude"
 cask "datagrip"
 cask "docker-desktop"
 cask "ghostty"
-# cask "gcloud-cli" install manually
 cask "visual-studio-code"
+# cask "gcloud-cli" install manually
 
 # Cask - System Extension
 cask "google-japanese-ime"
