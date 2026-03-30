@@ -31,8 +31,8 @@ brew "tmux"
 brew "vim"
 
 # Git
-brew "git"
 brew "git-delta"
+brew "git"
 brew "tig"
 
 # Cloud / Infrastructure
