@@ -17,4 +17,3 @@ github = "olets/zsh-abbr"
 [plugins.docker-completions]
 github = "docker/cli"
 dir = "contrib/completion/zsh"
-

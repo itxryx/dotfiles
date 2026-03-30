@@ -40,4 +40,3 @@ wait-after-command = true
 copy-on-select = clipboard
 
 keybind = shift+enter=text:\n
-
