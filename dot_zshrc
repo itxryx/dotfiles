@@ -36,7 +36,6 @@ setopt auto_menu
 setopt hist_reduce_blanks
 setopt hist_ignore_all_dups
 setopt share_history
-setopt inc_append_history
 setopt mark_dirs
 setopt no_beep
 setopt print_eight_bit
@@ -109,11 +108,7 @@ fzbat() {
 # Fuzzy process killer (default signal: 9)
 fzkill() {
   local pid
-  pid=$(procs | sed 1d | fzf -m --preview-window=hidden | awk '{print $1}')
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -''${1:-9}
-  fi
+  procs | sed 1d | fzf -m --preview-window=hidden | awk '{print $1}' | xargs kill -${1:-9}
 }
 
 # Fuzzy command history search (places selected command on the edit line)
