@@ -10,21 +10,20 @@
   editor = vim
   pager = delta
 
-[interactive]
-  diffFilter = delta --color-only
-
 [init]
   defaultBranch = main
 
 [color]
   ui = auto
 
-[merge]
-  ff = false
-  conflictstyle = diff3
+[status]
+  showUntrackedFiles = all
 
 [fetch]
   prune = true
+
+[push]
+  default = current
 
 [pull]
   ff = only
@@ -34,14 +33,15 @@
   autostash = true
   autosquash = true
 
-[push]
-  default = current
-
-[status]
-  showUntrackedFiles = all
+[merge]
+  ff = false
+  conflictstyle = diff3
 
 [diff]
   colorMoved = default
+
+[interactive]
+  diffFilter = delta --color-only
 
 [delta]
   side-by-side = true
