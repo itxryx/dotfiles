@@ -45,6 +45,7 @@ setopt share_history
 
 # --- Abbreviations (zsh-abbr) ---
 abbr -S g='git' &> /dev/null
+abbr -S glog='glog = log --graph --stat --oneline --all --branches --tags --remotes --pretty=fuller --decorate=auto' &> /dev/null
 abbr -S t='tig' &> /dev/null
 abbr -S cpwd='pwd | pbcopy' &> /dev/null
 abbr -S els='eza' &> /dev/null

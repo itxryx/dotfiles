@@ -43,9 +43,6 @@
 [diff]
   colorMoved = default
 
-[alias]
-  glog = log --graph --stat --oneline --all --branches --tags --remotes --pretty=fuller --decorate=auto
-
 [delta]
   side-by-side = true
   line-numbers = true
