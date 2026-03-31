@@ -5,7 +5,7 @@ export FZF_TMUX=1
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
 export LANG=ja_JP.UTF-8
-export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$HOME/bin:/usr/local/bin:$HOME/.local/bin:$(go env GOPATH)/bin:$PATH"
 export SAVEHIST=1000000
 
 # Vi key bindings
