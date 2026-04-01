@@ -16,6 +16,7 @@ brew "zoxide"         # cd alternative
 # Standard Utility
 brew "curl"
 brew "ffmpeg"
+brew "gnupg"
 brew "imagemagick"
 brew "jq"
 brew "nkf"
@@ -28,6 +29,7 @@ brew "zip"
 
 # Editor / Multiplexer
 brew "tmux"
+brew "tmuxinator"
 brew "vim"
 
 # Git
