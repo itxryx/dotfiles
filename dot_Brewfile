@@ -29,7 +29,6 @@ brew "zip"
 
 # Editor / Multiplexer
 brew "tmux"
-brew "tmuxinator"
 brew "vim"
 
 # Git
