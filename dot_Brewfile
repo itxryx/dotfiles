@@ -40,12 +40,16 @@ brew "tig"
 brew "terraform"
 # brew "awscli" install manually
 
+# AI
+brew "ollama"
+
 # Cask - Development
 cask "claude-code"
 cask "claude"
 cask "datagrip"
 cask "docker-desktop"
 cask "ghostty"
+cask "ollama-app"
 cask "visual-studio-code"
 # cask "gcloud-cli" install manually
 
