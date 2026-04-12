@@ -38,7 +38,12 @@ brew "tig"
 
 # Cloud / Infrastructure
 brew "terraform"
-# brew "awscli" install manually
+brew "awscli"
+brew "aws-sam-cli"
+
+# Programming
+brew "go"
+brew "golangci-lint"
 
 # AI
 brew "ollama"
