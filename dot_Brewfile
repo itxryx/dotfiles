@@ -56,6 +56,7 @@ cask "docker-desktop"
 cask "ghostty"
 cask "google-gemini"
 cask "ollama-app"
+cask "tailscale-app"
 cask "visual-studio-code"
 # cask "gcloud-cli" install manually
 
@@ -69,9 +70,9 @@ cask "google-chrome"
 
 # Cask - Productivity / Communication
 cask "antinote"
-cask "discord"
 cask "figma"
 cask "notion"
+cask "obsidian"
 cask "slack"
 cask "ticktick"
 
