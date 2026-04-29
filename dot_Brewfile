@@ -56,7 +56,6 @@ cask "docker-desktop"
 cask "ghostty"
 cask "google-gemini"
 cask "ollama-app"
-cask "tailscale-app"
 cask "visual-studio-code"
 # cask "gcloud-cli" install manually
 
