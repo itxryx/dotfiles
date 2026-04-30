@@ -46,6 +46,7 @@ brew "go"
 brew "golangci-lint"
 
 # AI
+brew "gemini-cli"
 brew "ollama"
 
 # Cask - Development
