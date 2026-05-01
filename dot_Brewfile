@@ -21,6 +21,7 @@ brew "imagemagick"
 brew "jq"
 brew "nkf"
 brew "nmap"
+brew "mkcert"
 brew "tcpdump"
 brew "tree"
 brew "unzip"
@@ -37,7 +38,6 @@ brew "git"
 brew "tig"
 
 # Cloud / Infrastructure
-brew "terraform"
 brew "awscli"
 brew "aws-sam-cli"
 
