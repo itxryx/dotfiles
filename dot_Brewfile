@@ -70,9 +70,9 @@ cask "google-chrome"
 
 # Cask - Productivity / Communication
 cask "antinote"
+cask "craft"
 cask "figma"
 cask "notion"
-cask "obsidian"
 cask "slack"
 cask "ticktick"
 
