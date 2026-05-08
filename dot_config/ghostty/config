@@ -19,8 +19,8 @@ font-thicken
 
 # --- Scrolling ---
 mouse-scroll-multiplier = 3
-# 500MB
-scrollback-limit = 524288000
+# 10MB
+scrollback-limit = 10000000
 
 # --- Window appearance ---
 background-opacity = 0.89
