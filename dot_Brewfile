@@ -74,7 +74,6 @@ cask "craft"
 cask "figma"
 cask "notion"
 cask "slack"
-cask "ticktick"
 
 # Cask - Multimedia
 cask "vlc"
