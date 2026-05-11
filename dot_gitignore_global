@@ -36,3 +36,5 @@ tmp/
 *.sqlite
 *.sqlite3
 *.db
+
+devcontainer-lock.json
