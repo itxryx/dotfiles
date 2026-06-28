@@ -1,0 +1,40 @@
+[user]
+  name = komatsu ryo
+  email = dev@itxryx.com
+
+[includeIf "gitdir:~/Works/"]
+  path = ~/.gitconfig_work
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
+[init]
+  defaultBranch = main
+
+[color]
+  ui = auto
+
+[status]
+  showUntrackedFiles = all
+
+[fetch]
+  prune = true
+
+[push]
+  default = current
+
+[pull]
+  ff = only
+  rebase = true
+
+[rebase]
+  autostash = true
+  autosquash = true
+
+[merge]
+  ff = false
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
