@@ -1,0 +1,36 @@
+theme = Dracula
+
+cursor-style = bar
+cursor-style-blink = true
+mouse-hide-while-typing
+
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-family = HackGen Console
+font-family = HackGen Console NF
+font-family = monospace
+font-style = "Regular"
+font-style-bold = "Bold"
+font-style-italic = "Italic"
+font-style-bold-italic = "Bold Italic"
+font-size = 14
+font-thicken
+
+mouse-scroll-multiplier = 3
+scrollback-limit = 10485760
+
+background-opacity = 0.7
+background-blur = false
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+window-theme = ghostty
+maximize = true
+macos-titlebar-style = transparent
+title = ""
+
+command = /bin/zsh -l -c "tmux a -t 0 || tmux"
+
+wait-after-command = true
+copy-on-select = clipboard
+
+keybind = shift+enter=text:\n
