@@ -1,0 +1,113 @@
+# Official Amazon AWS command-line interface
+brew "awscli"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Manage your dotfiles across multiple diverse machines, securely
+brew "chezmoi"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Modern, maintained replacement for ls
+brew "eza"
+# Like neofetch, but much faster because written mostly in C
+brew "fastfetch"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# Command-line fuzzy finder written in Go
+brew "fzf"
+# Distributed revision control system
+brew "git"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Simple tool to make locally trusted development certificates
+brew "mkcert"
+# Network Kanji code conversion Filter (NKF)
+brew "nkf"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Modern replacement for ps written in Rust
+brew "procs"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Fast, configurable, shell plugin manager
+brew "sheldon"
+# Text interface for Git repositories
+brew "tig"
+# Terminal multiplexer
+brew "tmux"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
+# Extraction utility for .zip compressed archives
+brew "unzip"
+# Vi 'workalike' with many additional features
+brew "vim"
+# Internet file retriever
+brew "wget"
+# Compression and file packaging/archive utility
+brew "zip"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
+# Anthropic's official Claude AI desktop app
+cask "claude"
+# Terminal-based AI coding assistant
+cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
+# Native document editor
+cask "craft"
+# Databases and SQL IDE
+cask "datagrip"
+# App to build and share containerised applications and microservices
+cask "docker-desktop"
+cask "font-hackgen-nerd"
+cask "font-jetbrains-mono-nerd-font"
+# Terminal emulator that uses platform-native UI and GPU acceleration
+cask "ghostty"
+# Web browser
+cask "google-chrome"
+# Japanese input software
+cask "google-japanese-ime"
+# Keyboard customiser
+cask "karabiner-elements"
+# Password manager application and digital vault
+cask "keeper-password-manager"
+# App to write, plan, collaborate, and get organised
+cask "notion"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
+# Get up and running with large language models locally
+cask "ollama-app"
+# Window snapping tool
+cask "rectangle-pro"
+# Team communication and collaboration software
+cask "slack"
+# System monitor for the menu bar
+cask "stats"
+# Open-source code editor
+cask "visual-studio-code"
+# Multimedia player
+cask "vlc"
+vscode "alefragnani.bookmarks"
+vscode "biomejs.biome"
+vscode "dbaeumer.vscode-eslint"
+vscode "docker.docker"
+vscode "esbenp.prettier-vscode"
+vscode "github.vscode-github-actions"
+vscode "golang.go"
+vscode "ms-azuretools.vscode-containers"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-ceintl.vscode-language-pack-ja"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode-remote.remote-wsl"
+vscode "ms-vscode-remote.vscode-remote-extensionpack"
+vscode "ms-vscode.makefile-tools"
+vscode "ms-vscode.remote-explorer"
+vscode "ms-vscode.remote-server"
+vscode "redhat.vscode-yaml"
