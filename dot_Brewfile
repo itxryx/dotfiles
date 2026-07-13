@@ -56,8 +56,6 @@ cask "claude"
 cask "claude-code"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# OpenAI's Codex desktop app for managing coding agents
-cask "codex-app"
 # Native document editor
 cask "craft"
 # Databases and SQL IDE
