@@ -18,6 +18,8 @@ brew "fzf"
 brew "git"
 # GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Agent multiplexer that lives in your terminal
+brew "herdr"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Simple tool to make locally trusted development certificates
