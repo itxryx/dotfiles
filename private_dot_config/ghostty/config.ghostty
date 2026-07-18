@@ -28,8 +28,7 @@ maximize = true
 macos-titlebar-style = transparent
 title = ""
 
-command = /bin/zsh -l -c "tmux a -t 0 || tmux"
-
+command = /bin/zsh -l -c "herdr session attach || herdr session attach default"
 wait-after-command = true
 copy-on-select = clipboard
 
