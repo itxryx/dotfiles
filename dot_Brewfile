@@ -44,6 +44,8 @@ brew "tree"
 brew "unzip"
 # Vi 'workalike' with many additional features
 brew "vim"
+# Executes a program periodically, showing output fullscreen
+brew "watch"
 # Internet file retriever
 brew "wget"
 # Compression and file packaging/archive utility
