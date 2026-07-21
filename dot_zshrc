@@ -78,3 +78,23 @@ precmd () {
     export GIT_BRANCH_NAME=""
   fi
 }
+
+portwatch() {
+  local interval="${1:-5}"
+  watch -n "$interval" '
+    printf "%-7s %-8s %-7s %-24s %s\n" \
+      "PORT" "PROTO" "PID" "ADDRESS" "COMMAND"
+    sudo lsof -nP -iTCP -sTCP:LISTEN |
+    awk "NR>1 {
+      port=\$9
+      sub(/.*:/, \"\", port)
+      print port, \$2, \$8, \$9
+    }" |
+    sort -n -k1,1 |
+    while read -r port pid proto address; do
+      command=$(ps -p "$pid" -o command=)
+      printf "%-7s %-8s %-7s %-24s %s\n" \
+        "$port" "$proto" "$pid" "$address" "$command"
+    done
+  '
+}
